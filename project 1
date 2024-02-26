@@ -1,1 +1,61 @@
+/*
+Author: Agyei Bacchus
+Course: CSCI 13500
+Instructor: Tong Yi
+Assignment:  Project 1A - sum.cpp
 
+takes numbers, outputs sum
+*/
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    
+    //generate a random operator in '+', '-', '*', '/', '%'
+    char ops[] = {'+', '-', '*', '/', '%'};
+
+    //find out number of elements of array ops
+    //WARNING: the following approach only works
+    //in the same function where an array is declared
+    //and initialized.
+    int size = sizeof(ops) / sizeof(ops[0]);
+
+    int index = rand() % size;
+    char currOp = ops[index];
+
+    int num = rand() % 10; //generate a random int in [0, 9]
+    int num2;
+    if (currOp == '/' || currOp == '%')
+       num2 = rand() % 9 + 1;  //a random int in [1, 9]
+    else 
+       num2 = rand() % 10; //random int in [0, 9]
+    int result;
+        switch (currOp) {
+            case '+':
+                result = num + num2;
+                break;
+            case '-':
+                result = num - num2;
+                break;
+            case '*':
+                result = num * num2;
+                break;
+            case '/':
+                result = num / num2;
+                break;
+            case '%':
+                result = num % num2;
+                break;
+        }
+
+    cout << "What does " << num << " " << currOp << " " << num2 << " = ?" << endl; // Prompts a question
+
+    int userAnswer;
+    cin >> userAnswer; // Takes in an answer
+    cout << boolalpha << (userAnswer == result) << endl; // t/f if answer = result
+
+    return 0;
+}
